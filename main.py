@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.express as px
+from backend import get_data
 
 st.title("Weather Forecast  for the Next Days")
 place = st.text_input("Place:  ")
@@ -12,13 +13,10 @@ st.subheader(f"{option} for the next {days} days in {place}")
 # Add graph chart,import and use plotly.express library
 # Create a figure , use x, y and name
 
-def gat_dates(days):
-    dates = ["2022-25-10", "2022-26-10", "2022-27-10"]
-    temperature = [10, 11, 15]
-    temperature = [days * i for i in temperature]
-    return dates, temperature
 
-d, t = gat_dates(days)
+get_data(place, days, kind)
+
+d, t = get_data(days)
 
 figure = px.line(x=d, y=t, labels={"x": "Date", "y": "Temperature (C)"})
 st.plotly_chart(figure)
